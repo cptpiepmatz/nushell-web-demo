@@ -2,6 +2,7 @@ export def prep [] {
   ^rustup target add wasm32-unknown-unknown
   ^cargo install trunk --locked --features openssl/vendored
   ^cargo install leptosfmt
+  ^git submodule update --init --recursive
 }
 
 export def fmt [

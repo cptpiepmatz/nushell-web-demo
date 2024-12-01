@@ -17,6 +17,9 @@ nu-parser = { version = "0.100.0", default-features = false }
 nu-protocol = { version = "0.100.0", default-features = false }
 nuon = { version = "0.100.0", default-features = false }
 
+# general stuff
+thiserror = "1"
+
 [patch.crates-io]
 nu-cmd-extra = { git = "https://github.com/nushell/nushell.git" }
 nu-cmd-lang = { git = "https://github.com/nushell/nushell.git" }
