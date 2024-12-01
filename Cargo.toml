@@ -1,0 +1,27 @@
+[package]
+name = "nushell-web-demo"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# dependencies for web development
+console_error_panic_hook = "0.1.7"
+leptos = { version = "0.7.0", features = ["csr"] }
+
+# nu
+nu-cmd-extra = { version = "0.100.0", default-features = false }
+nu-cmd-lang = { version = "0.100.0", default-features = false }
+nu-command = { version = "0.100.0", default-features = false }
+nu-engine = { version = "0.100.0", default-features = false }
+nu-parser = { version = "0.100.0", default-features = false }
+nu-protocol = { version = "0.100.0", default-features = false }
+nuon = { version = "0.100.0", default-features = false }
+
+[patch.crates-io]
+nu-cmd-extra = { git = "https://github.com/nushell/nushell.git" }
+nu-cmd-lang = { git = "https://github.com/nushell/nushell.git" }
+nu-command = { git = "https://github.com/nushell/nushell.git" }
+nu-engine = { git = "https://github.com/nushell/nushell.git" }
+nu-parser = { git = "https://github.com/nushell/nushell.git" }
+nu-protocol = { git = "https://github.com/nushell/nushell.git" }
+nuon = { git = "https://github.com/nushell/nushell.git" }
