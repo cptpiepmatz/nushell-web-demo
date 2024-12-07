@@ -1,7 +1,8 @@
 use leptos::prelude::*;
 
-pub(super) fn Html() -> impl IntoView {
+#[component]
+pub(super) fn Html(output: Signal<String>) -> impl IntoView {
     view! {
-        <pre>html output somehow</pre>
+        <div class="content hide-html-output-background" inner_html=output />
     }
 }

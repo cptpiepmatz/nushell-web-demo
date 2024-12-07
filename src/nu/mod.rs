@@ -1,10 +1,10 @@
 use nu_protocol::{
-    debugger::WithoutDebug,
-    engine::{EngineState, Stack, StateDelta, StateWorkingSet},
-    CompileError, ParseError, PipelineData, ShellError,
+    debugger::WithoutDebug, engine::{EngineState, Stack, StateDelta, StateWorkingSet}, CompileError, ParseError, PipelineData, ShellError, Span, Value
 };
 use std::fmt::Debug;
 use thiserror::Error;
+
+pub mod render;
 
 #[allow(clippy::let_and_return)] // i like it here
 pub fn initial_engine_state() -> EngineState {
@@ -12,6 +12,9 @@ pub fn initial_engine_state() -> EngineState {
 
     let engine_state = nu_command::add_shell_command_context(engine_state);
     let engine_state = nu_cmd_extra::add_extra_command_context(engine_state);
+
+    let mut engine_state = engine_state;
+    engine_state.add_env_var("PWD".to_string(), Value::string("/", Span::unknown()));
 
     engine_state
 }

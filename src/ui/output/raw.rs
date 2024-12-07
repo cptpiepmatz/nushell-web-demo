@@ -1,7 +1,8 @@
 use leptos::prelude::*;
 
-pub(super) fn Raw() -> impl IntoView {
+#[component]
+pub(super) fn Raw(output: Signal<String>) -> impl IntoView {
     view! {
-        <pre>raw output somehow</pre>
+        <pre>{output}</pre>
     }
 }

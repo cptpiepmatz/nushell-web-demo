@@ -1,7 +1,8 @@
 use leptos::prelude::*;
 
-pub(super) fn Json() -> impl IntoView {
+#[component]
+pub(super) fn Json(output: Signal<String>) -> impl IntoView {
     view! {
-        <pre>json output somehow</pre>
+        <json-viewer data=output></json-viewer>
     }
 }
