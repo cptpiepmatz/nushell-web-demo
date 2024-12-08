@@ -10,11 +10,17 @@ extern "C" {
     #[wasm_bindgen]
     pub fn edit(id: &str) -> Editor;
 
+    #[wasm_bindgen(method, getter, js_name = textInput)]
+    pub fn text_input(this: &Editor) -> TextInput;
+
     #[wasm_bindgen(method, js_name = setOptions)]
     fn _set_options(this: &Editor, options: &JsValue);
 
     #[wasm_bindgen(method, js_name = getValue)]
     pub fn get_value(this: &Editor) -> String;
+
+    #[wasm_bindgen(method, js_name = setValue)]
+    fn _set_value(this: &Editor, val: &str, cursor: Option<u32>);
 
     #[wasm_bindgen(method, js_name = setTheme)]
     pub fn set_theme(this: &Editor, theme: &str);
@@ -24,6 +30,10 @@ impl Editor {
     pub fn set_options(&self, options: &EditorOptions) {
         let options = serde_wasm_bindgen::to_value(options).unwrap();
         self._set_options(&options);
+    }
+
+    pub fn set_value(&self, val: &str, cursor: impl Into<Option<u32>>) {
+        self._set_value(val, cursor.into())
     }
 }
 
@@ -168,6 +178,15 @@ pub struct EditorOptions {
     pub wrap_behaviours_enabled: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub wrap_method: Option<String>, // "code" | "text" | "auto"
+}
+
+#[wasm_bindgen]
+extern "C" {
+    #[wasm_bindgen(js_namespace = ["ace", "Ace"])]
+    pub type TextInput;
+
+    #[wasm_bindgen(method, js_name = resetSelection)]
+    pub fn reset_selection(this: &TextInput);
 }
 
 pub mod config {
