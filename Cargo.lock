@@ -2288,6 +2288,7 @@ name = "nushell-web-demo"
 version = "0.1.0"
 dependencies = [
  "console_error_panic_hook",
+ "js-sys",
  "leptos",
  "nu-cmd-extra",
  "nu-cmd-lang",
@@ -2296,7 +2297,11 @@ dependencies = [
  "nu-parser",
  "nu-protocol",
  "nuon",
+ "serde",
+ "serde-wasm-bindgen",
  "thiserror 1.0.69",
+ "wasm-bindgen",
+ "web-sys",
 ]
 
 [[package]]
@@ -3133,6 +3138,17 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6513c1ad0b11a9376da888e3e0baa0077f1aed55c17f50e7b2397136129fb88f"
 dependencies = [
  "serde_derive",
+]
+
+[[package]]
+name = "serde-wasm-bindgen"
+version = "0.6.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8302e169f0eddcc139c70f139d19d6467353af16f9fce27e8c30158036a1e16b"
+dependencies = [
+ "js-sys",
+ "serde",
+ "wasm-bindgen",
 ]
 
 [[package]]

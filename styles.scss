@@ -1,6 +1,6 @@
 $nushell-green: #4E9A06;
 
-@use "./bulma/sass" as bulma with (
+@use "./node_modules/bulma/sass" as bulma with (
   $primary: $nushell-green
 );
 

@@ -1,15 +1,15 @@
 use std::mem;
 
+use html::Html;
+use json::Json;
 use leptos::prelude::*;
 use raw::Raw;
-use json::Json;
-use html::Html;
 
 use crate::nu::render::RenderedData;
 
-mod raw;
-mod json;
 mod html;
+mod json;
+mod raw;
 
 #[component]
 pub fn Output(output: ReadSignal<RenderedData>) -> impl IntoView {
@@ -17,7 +17,7 @@ pub fn Output(output: ReadSignal<RenderedData>) -> impl IntoView {
     enum OutputKind {
         Raw,
         Json,
-        Html
+        Html,
     }
 
     let table = Signal::derive(move || output.read().table.to_string());
@@ -47,9 +47,15 @@ pub fn Output(output: ReadSignal<RenderedData>) -> impl IntoView {
             </ul>
         </div>
         <div>
-            <Show when=move || kind.get() == OutputKind::Raw><Raw output=table /></Show>
-            <Show when=move || kind.get() == OutputKind::Json><Json output=json /></Show>
-            <Show when=move || kind.get() == OutputKind::Html><Html output=html /></Show>
+            <Show when=move || kind.get() == OutputKind::Raw>
+                <Raw output=table />
+            </Show>
+            <Show when=move || kind.get() == OutputKind::Json>
+                <Json output=json />
+            </Show>
+            <Show when=move || kind.get() == OutputKind::Html>
+                <Html output=html />
+            </Show>
         </div>
     }
 }

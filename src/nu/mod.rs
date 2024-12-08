@@ -1,5 +1,7 @@
 use nu_protocol::{
-    debugger::WithoutDebug, engine::{EngineState, Stack, StateDelta, StateWorkingSet}, CompileError, ParseError, PipelineData, ShellError, Span, Value
+    debugger::WithoutDebug,
+    engine::{EngineState, Stack, StateDelta, StateWorkingSet},
+    CompileError, ParseError, PipelineData, ShellError, Span, Value,
 };
 use std::fmt::Debug;
 use thiserror::Error;

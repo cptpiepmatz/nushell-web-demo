@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "ace-builds": "^1.36.5",
+    "bulma": "^1.0.2"
+  }
+}
