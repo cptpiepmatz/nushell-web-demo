@@ -1,3 +1,5 @@
+use wasm_bindgen::JsValue;
+
 mod nu;
 mod ui;
 

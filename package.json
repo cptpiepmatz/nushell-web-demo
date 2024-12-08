@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "ace-builds": "^1.36.5",
+    "ayu-ace": "^2.0.4",
     "bulma": "^1.0.2"
   }
 }

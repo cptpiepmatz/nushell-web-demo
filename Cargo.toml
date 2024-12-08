@@ -7,11 +7,13 @@ edition = "2021"
 # dependencies for web development
 console_error_panic_hook = "0.1.7"
 leptos = { version = "0.7.0", features = ["csr"] }
+leptos-use = "*"
 js-sys = "*"
 web-sys = "*"
 wasm-bindgen = "*"
 serde = "1"
 serde-wasm-bindgen = "*"
+parking_lot = "0.12.3"
 
 # nu
 nu-cmd-extra = { version = "0.100.0", default-features = false }
