@@ -2,6 +2,7 @@
   "scripts": {
     "start": "trunk serve",
     "build": "trunk build",
+    "doc": "cargo doc",
     "install": "run-s install:*",
     "install:wasm": "rustup target add wasm32-unknown-unknown",
     "install:trunk": "cargo install trunk --locked --features openssl/vendored",
