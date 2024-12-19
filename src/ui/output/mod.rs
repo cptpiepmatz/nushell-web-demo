@@ -21,12 +21,12 @@ pub fn Output(output: ReadSignal<RenderedData>) -> impl IntoView {
     let table = Signal::derive(move || output.read().table.to_string());
     let json = Signal::derive(move || output.read().json.to_string());
     let html = Signal::derive(move || output.read().html.to_string());
-    
+
     let (kind, set_kind) = signal(OutputKind::Json);
 
-    let display_table = move || if kind.get() == OutputKind::Raw {""} else {"none"};
-    let display_json = move || if kind.get() == OutputKind::Json {""} else {"none"};
-    let display_html = move || if kind.get() == OutputKind::Html {""} else {"none"};
+    let display_table = move || if kind.get() == OutputKind::Raw { "" } else { "none" };
+    let display_json = move || if kind.get() == OutputKind::Json { "" } else { "none" };
+    let display_html = move || if kind.get() == OutputKind::Html { "" } else { "none" };
 
     view! {
         <div class="tabs is-boxed">

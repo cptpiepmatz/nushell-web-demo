@@ -30,7 +30,7 @@ pub fn App() -> impl IntoView {
 
     let get_editor = editor.clone();
     let on_run = move |_| {
-        let Some(editor) = get_editor.get() else {return};
+        let Some(editor) = get_editor.get() else { return };
         let value = editor.get_value();
         let value = value.trim();
         log!("on_run: {value:?}");
@@ -46,10 +46,10 @@ pub fn App() -> impl IntoView {
     let is_dark_preferred = leptos_use::use_preferred_dark();
     let _update_editor_theme = Effect::new(move || {
         editor_loaded.get();
-        let Some(editor) = get_editor.get() else {return};
+        let Some(editor) = get_editor.get() else { return };
         match is_dark_preferred.get() {
             true => editor.set_theme("ace/theme/ayu-dark"),
-            false => editor.set_theme("ace/theme/ayu-light")
+            false => editor.set_theme("ace/theme/ayu-light"),
         }
     });
 

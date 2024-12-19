@@ -34,17 +34,11 @@ pub fn execute(
     // TODO: report parse warnings
 
     if let Some(error) = working_set.parse_errors.into_iter().next() {
-        return Err(ExecuteError::Parse {
-            error,
-            delta: working_set.delta,
-        });
+        return Err(ExecuteError::Parse { error, delta: working_set.delta });
     }
 
     if let Some(error) = working_set.compile_errors.into_iter().next() {
-        return Err(ExecuteError::Compile {
-            error,
-            delta: working_set.delta,
-        });
+        return Err(ExecuteError::Compile { error, delta: working_set.delta });
     }
 
     engine_state.merge_delta(working_set.delta)?;

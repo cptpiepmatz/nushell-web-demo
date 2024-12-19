@@ -14,17 +14,17 @@ pub(super) fn Json(output: Signal<String>) -> impl IntoView {
     let is_dark_preferred = leptos_use::use_preferred_dark();
     let _update_editor_theme = Effect::new(move || {
         editor_loaded.get(); // react to init event
-        let Some(editor) = get_editor.get() else {return};
+        let Some(editor) = get_editor.get() else { return };
         match is_dark_preferred.get() {
             true => editor.set_theme("ace/theme/ayu-dark"),
-            false => editor.set_theme("ace/theme/ayu-light")
+            false => editor.set_theme("ace/theme/ayu-light"),
         }
     });
 
     let get_editor = editor.clone();
     let _update_editor_value = Effect::new(move || {
         editor_loaded.get(); // react to init event
-        let Some(editor) = get_editor.get() else {return};
+        let Some(editor) = get_editor.get() else { return };
         let value = output.get();
         leptos::logging::log!("some");
         editor.set_value(&value, None);
@@ -47,7 +47,5 @@ pub(super) fn Json(output: Signal<String>) -> impl IntoView {
         set_editor_loaded.set(());
     });
 
-    view! { 
-        <pre id="json-output" style="height: 400px" node_ref=editor_element></pre>
-     }
+    view! { <pre id="json-output" style="height: 400px" node_ref=editor_element></pre> }
 }
