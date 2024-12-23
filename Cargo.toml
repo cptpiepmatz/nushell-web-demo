@@ -28,10 +28,11 @@ nuon = { version = "0.100.0", default-features = false }
 thiserror = "1"
 
 [patch.crates-io]
-nu-cmd-extra = { git = "https://github.com/nushell/nushell.git" }
-nu-cmd-lang = { git = "https://github.com/nushell/nushell.git" }
-nu-command = { git = "https://github.com/nushell/nushell.git" }
-nu-engine = { git = "https://github.com/nushell/nushell.git" }
-nu-parser = { git = "https://github.com/nushell/nushell.git" }
-nu-protocol = { git = "https://github.com/nushell/nushell.git" }
-nuon = { git = "https://github.com/nushell/nushell.git" }
+nu-cmd-extra = { git = "https://github.com/cptpiepmatz/nushell.git", branch = "auto-ansi-colors" }
+nu-cmd-lang = { git = "https://github.com/cptpiepmatz/nushell.git", branch = "auto-ansi-colors" }
+nu-command = { git = "https://github.com/cptpiepmatz/nushell.git", branch = "auto-ansi-colors" }
+nu-engine = { git = "https://github.com/cptpiepmatz/nushell.git", branch = "auto-ansi-colors" }
+nu-parser = { git = "https://github.com/cptpiepmatz/nushell.git", branch = "auto-ansi-colors" }
+nu-protocol = { git = "https://github.com/cptpiepmatz/nushell.git", branch = "auto-ansi-colors" }
+nuon = { git = "https://github.com/cptpiepmatz/nushell.git", branch = "auto-ansi-colors" }
+
