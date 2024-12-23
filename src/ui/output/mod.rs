@@ -22,7 +22,7 @@ pub fn Output(output: ReadSignal<RenderedData>) -> impl IntoView {
     let json = Signal::derive(move || output.read().json.to_string());
     let html = Signal::derive(move || output.read().html.to_string());
 
-    let (kind, set_kind) = signal(OutputKind::Json);
+    let (kind, set_kind) = signal(OutputKind::Raw);
 
     let display_table = move || if kind.get() == OutputKind::Raw { "" } else { "none" };
     let display_json = move || if kind.get() == OutputKind::Json { "" } else { "none" };

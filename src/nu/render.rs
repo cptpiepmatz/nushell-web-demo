@@ -1,7 +1,7 @@
 use nu_protocol::{
     ast::{self, Argument},
     engine::{Call, Command, EngineState, Stack},
-    PipelineData, Span, Spanned,
+    PipelineData, Span, Spanned, UseAnsiColoring,
 };
 
 pub struct RenderedData {
@@ -17,6 +17,9 @@ impl RenderedData {
 
         let value = pipeline_data.into_value(Span::unknown()).unwrap();
 
+        leptos::logging::log!("{:#?}", engine_state.config);
+        let mut engine_state = engine_state.clone();
+        std::sync::Arc::make_mut(&mut engine_state.config).use_ansi_coloring = UseAnsiColoring::True;
         let table = nu_command::Table;
         let table = table
             .run(&engine_state, &mut stack, &call, PipelineData::Value(value.clone(), None))
