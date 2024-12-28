@@ -29,5 +29,5 @@ jobs:
           target: $TARGET
           cache-key: ${{ hashFiles('**/package-lock.json') }}
           cache-directories: "node_modules"
-      - run: npm ci
+      - run: npm ci --ignore-scripts
       - run: ${{ matrix.job.command }}
