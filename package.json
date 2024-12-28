@@ -2,6 +2,7 @@
   "scripts": {
     "start": "trunk serve",
     "build": "trunk build",
+    "check": "cargo check --target wasm32-unknown-unknown",
     "doc": "cargo doc",
     "install": "run-s install:*",
     "install:wasm": "rustup target add wasm32-unknown-unknown",
