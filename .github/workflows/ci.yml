@@ -1,0 +1,33 @@
+name: continuous-integration
+
+on:
+  push:
+  
+env:
+  TARGET: wasm32-unknown-unknown
+
+jobs:
+  cargo:
+    name: cargo-${{ matrix.job.name }}
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        job:
+          - name: check
+            command: cargo check --target $TARGET
+          - name: build
+            command: cargo build --target $TARGET
+          - name: doc
+            command: cargo doc --target $TARGET
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          target: $TARGET
+          cache-key: ${{ hashFiles('**/package-lock.json') }}
+          cache-directories: "node_modules"
+      - run: npm ci
+      - run: ${{ matrix.job.command }}
