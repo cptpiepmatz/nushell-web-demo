@@ -14,10 +14,10 @@ mod output;
 
 #[component]
 pub fn App() -> impl IntoView {
-    ace::config::set("basePath", &JsValue::from("/ace"));
-    ace::config::set("workerPath", &JsValue::from("/ace"));
-    ace::config::set("modePath", &JsValue::from("/ace"));
-    ace::config::set("themePath", &JsValue::from("/ace"));
+    ace::config::set("basePath", &JsValue::from("./ace"));
+    ace::config::set("workerPath", &JsValue::from("./ace"));
+    ace::config::set("modePath", &JsValue::from("./ace"));
+    ace::config::set("themePath", &JsValue::from("./ace"));
 
     let mut engine_state = crate::nu::initial_engine_state();
     let mut stack = Stack::new();

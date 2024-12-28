@@ -37,7 +37,7 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm run install
         continue-on-error: true
-      - run: trunk build --public-url "/${{ github.event.repository.name }}/"
+      - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ${{ github.workspace }}/dist
