@@ -29,7 +29,7 @@ jobs:
         with:
           target: $TARGET
           cache-key: ${{ hashFiles('**/package-lock.json') }}
-          cache-directories: "node_modules"
+          cache-directories: "${{ github.workspace }}/node_modules"
           rustflags: $RUSTFLAGS
       - run: npm ci --ignore-scripts
       - run: ${{ matrix.job.command }}
