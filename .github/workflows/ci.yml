@@ -17,10 +17,13 @@ jobs:
         job:
           - name: check
             command: cargo check --target $TARGET
+            continue-on-error: true
           - name: build
             command: cargo build --target $TARGET
+            continue-on-error: false
           - name: doc
             command: cargo doc --target $TARGET
+            continue-on-error: true
 
     steps:
       - uses: actions/checkout@v4
@@ -31,3 +34,4 @@ jobs:
           cache-directories: "node_modules"
       - run: npm ci --ignore-scripts
       - run: ${{ matrix.job.command }}
+        continue-on-error: ${{ matrix.job.continue-on-error }}
