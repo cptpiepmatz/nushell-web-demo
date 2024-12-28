@@ -21,7 +21,6 @@ concurrency:
 env:
   TARGET: wasm32-unknown-unknown
   RUSTFLAGS: ""
-  BUILD_PATH: "./dist"
 
 jobs:
   build:
@@ -37,6 +36,9 @@ jobs:
           rustflags: $RUSTFLAGS
       - run: npm ci
       - run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ github.workspace }}/dist
 
   deploy:
     environment:
