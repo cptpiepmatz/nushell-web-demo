@@ -35,7 +35,7 @@ jobs:
           cache-directories: "${{ github.workspace }}/node_modules"
           rustflags: $RUSTFLAGS
       - run: npm ci --ignore-scripts
-      - run: npm run postinstall
+      - run: npm run install
         continue-on-error: true
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
