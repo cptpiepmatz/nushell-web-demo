@@ -34,7 +34,9 @@ jobs:
           cache-key: ${{ hashFiles('**/package-lock.json') }}
           cache-directories: "${{ github.workspace }}/node_modules"
           rustflags: $RUSTFLAGS
-      - run: npm ci
+      - run: npm ci --ignore-scripts
+      - run: npm run postinstall
+        continue-on-error: true
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
