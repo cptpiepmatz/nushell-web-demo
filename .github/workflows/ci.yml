@@ -5,6 +5,7 @@ on:
   
 env:
   TARGET: wasm32-unknown-unknown
+  RUSTFLAGS: ""
 
 jobs:
   cargo:
@@ -17,13 +18,10 @@ jobs:
         job:
           - name: check
             command: cargo check --target $TARGET
-            continue-on-error: true
           - name: build
             command: cargo build --target $TARGET
-            continue-on-error: false
           - name: doc
             command: cargo doc --target $TARGET
-            continue-on-error: true
 
     steps:
       - uses: actions/checkout@v4
@@ -32,6 +30,6 @@ jobs:
           target: $TARGET
           cache-key: ${{ hashFiles('**/package-lock.json') }}
           cache-directories: "node_modules"
+          rustflags: $RUSTFLAGS
       - run: npm ci --ignore-scripts
       - run: ${{ matrix.job.command }}
-        continue-on-error: ${{ matrix.job.continue-on-error }}
