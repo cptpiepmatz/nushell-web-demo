@@ -1,5 +1,6 @@
 use leptos::prelude::*;
 
+#[component]
 pub fn Navbar() -> impl IntoView {
     let title = "nushell/demo";
     view! {

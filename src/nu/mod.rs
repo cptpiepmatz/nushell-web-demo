@@ -81,12 +81,12 @@ pub enum ExecuteError {
 impl Debug for ExecuteError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            Self::Parse { error, delta } => f
+            Self::Parse { error, .. } => f
                 .debug_struct("Parse")
                 .field("error", error)
                 .field("delta", &format_args!("[StateDelta]"))
                 .finish(),
-            Self::Compile { error, delta } => f
+            Self::Compile { error, .. } => f
                 .debug_struct("Compile")
                 .field("error", error)
                 .field("delta", &format_args!("[StateDelta]"))
