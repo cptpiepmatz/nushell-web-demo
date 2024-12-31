@@ -1,16 +1,21 @@
 use crate::nu::render::RenderedData;
+use codee::string::FromToStringCodec;
 use js_sys::wasm_bindgen::JsValue;
 use layout::Navbar;
 use leptos::logging::log;
 use leptos::prelude::*;
+use leptos_use::storage::use_local_storage;
+use leptos_use::use_preferred_dark;
 use nu_protocol::engine::Stack;
 use output::Output;
 use std::cell::OnceCell;
 use std::sync::Arc;
+use web_sys::UrlSearchParams;
 
 mod ace;
 mod layout;
 mod output;
+
 
 #[component]
 pub fn App() -> impl IntoView {
@@ -21,6 +26,20 @@ pub fn App() -> impl IntoView {
 
     let mut engine_state = crate::nu::initial_engine_state();
     let mut stack = Stack::new();
+
+    let (startup_command, set_startup_command) = signal("version".to_string());
+
+    let (stored_command, set_stored_command, _) = use_local_storage::<String, FromToStringCodec>("command");
+    let stored_command = stored_command.get();
+    if !stored_command.trim().is_empty() {
+        set_startup_command.set(stored_command);
+    }
+
+    let url_search_params = web_sys::window().unwrap().location().search().unwrap();
+    let url_search_params = UrlSearchParams::new_with_str(&url_search_params).unwrap();
+    if let Some(command) = url_search_params.get("command") {
+        set_startup_command.set(command);
+    }
 
     let (output, set_output) = signal(RenderedData::empty());
 
@@ -33,6 +52,7 @@ pub fn App() -> impl IntoView {
         let Some(editor) = get_editor.get() else { return };
         let value = editor.get_value();
         let value = value.trim();
+        set_stored_command.set(value.to_string());
         log!("on_run: {value:?}");
         match crate::nu::execute(value, &mut engine_state, &mut stack, "stuff") {
             Ok(value) => {
@@ -43,7 +63,7 @@ pub fn App() -> impl IntoView {
     };
 
     let get_editor = editor.clone();
-    let is_dark_preferred = leptos_use::use_preferred_dark();
+    let is_dark_preferred = use_preferred_dark();
     let _update_editor_theme = Effect::new(move || {
         editor_loaded.get();
         let Some(editor) = get_editor.get() else { return };
@@ -72,7 +92,7 @@ pub fn App() -> impl IntoView {
         <Navbar />
         <section>
             <pre id="editor" node_ref=editor_element>
-                version
+                {startup_command}
             </pre>
             <button class="button is-primary" on:click=on_run>
                 Run
