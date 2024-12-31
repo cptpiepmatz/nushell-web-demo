@@ -22,7 +22,7 @@ impl RenderedData {
             .run(&engine_state, &mut stack, &call, PipelineData::Value(value.clone(), None))
             .unwrap();
         let table = table.into_value(Span::unknown()).unwrap();
-        let table = table.into_string().unwrap();
+        let table = table.coerce_string().unwrap();
 
         let json = nu_command::ToJson;
         let json = json
