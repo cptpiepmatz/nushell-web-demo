@@ -1,6 +1,7 @@
 use html::Html;
 use json::Json;
 use leptos::prelude::*;
+use leptos_use::use_preferred_dark;
 use raw::Raw;
 
 use crate::nu::render::RenderedData;
@@ -11,6 +12,8 @@ mod raw;
 
 #[component]
 pub fn Output(output: ReadSignal<RenderedData>) -> impl IntoView {
+    let is_preferred_dark = use_preferred_dark();
+
     #[derive(Debug, Clone, Copy, PartialEq, Eq)]
     enum OutputKind {
         Raw,
@@ -18,15 +21,24 @@ pub fn Output(output: ReadSignal<RenderedData>) -> impl IntoView {
         Html,
     }
 
-    let table = Signal::derive(move || output.read().table.to_string());
+    let table_light = Signal::derive(move || output.read().table.light.to_string());
+    let table_dark = Signal::derive(move || output.read().table.dark.to_string());
     let json = Signal::derive(move || output.read().json.to_string());
     let html = Signal::derive(move || output.read().html.to_string());
 
     let (kind, set_kind) = signal(OutputKind::Raw);
 
-    let display_table = move || if kind.get() == OutputKind::Raw { "" } else { "none" };
-    let display_json = move || if kind.get() == OutputKind::Json { "" } else { "none" };
-    let display_html = move || if kind.get() == OutputKind::Html { "" } else { "none" };
+    let show_table = Signal::derive(move || kind.get() == OutputKind::Raw);
+    let show_table_light = Signal::derive(move || show_table.get() && !is_preferred_dark.get());
+    let show_table_dark = Signal::derive(move || show_table.get() && is_preferred_dark.get());
+    let show_json = Signal::derive(move || kind.get() == OutputKind::Json);
+    let show_html = Signal::derive(move || kind.get() == OutputKind::Html);
+
+    let display = |signal: Signal<bool>| move || if signal.get() { "" } else { "none" };
+    let table_light_style = display(show_table_light);
+    let table_dark_style = display(show_table_dark);
+    let json_style = display(show_json);
+    let html_style = display(show_html);
 
     view! {
         <div class="tabs is-boxed">
@@ -49,9 +61,10 @@ pub fn Output(output: ReadSignal<RenderedData>) -> impl IntoView {
             </ul>
         </div>
         <div>
-            <Raw style:display=display_table output=table />
-            <Json style:display=display_json output=json />
-            <Html style:display=display_html output=html />
+            <Raw style:display=table_light_style output=table_light />
+            <Raw style:display=table_dark_style output=table_dark />
+            <Json style:display=json_style output=json />
+            <Html style:display=html_style output=html />
         </div>
     }
 }

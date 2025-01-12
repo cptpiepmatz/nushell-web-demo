@@ -16,7 +16,6 @@ mod ace;
 mod layout;
 mod output;
 
-
 #[component]
 pub fn App() -> impl IntoView {
     ace::config::set("basePath", &JsValue::from("./ace"));
@@ -29,7 +28,8 @@ pub fn App() -> impl IntoView {
 
     let (startup_command, set_startup_command) = signal("version".to_string());
 
-    let (stored_command, set_stored_command, _) = use_local_storage::<String, FromToStringCodec>("command");
+    let (stored_command, set_stored_command, _) =
+        use_local_storage::<String, FromToStringCodec>("command");
     let stored_command = stored_command.get();
     if !stored_command.trim().is_empty() {
         set_startup_command.set(stored_command);
@@ -71,6 +71,11 @@ pub fn App() -> impl IntoView {
             true => editor.set_theme("ace/theme/ayu-dark"),
             false => editor.set_theme("ace/theme/ayu-light"),
         }
+    });
+
+    let _update_output_theme = Effect::new(move || match is_dark_preferred.get() {
+        true => println!("jo, mach dark"),
+        false => println!("mach hell"),
     });
 
     let set_editor = editor.clone();

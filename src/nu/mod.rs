@@ -1,5 +1,7 @@
 use nu_protocol::{
-    debugger::WithoutDebug, engine::{EngineState, Stack, StateDelta, StateWorkingSet}, CompileError, Config, ParseError, PipelineData, ShellError, Span, Value
+    debugger::WithoutDebug,
+    engine::{EngineState, Stack, StateDelta, StateWorkingSet},
+    CompileError, Config, ParseError, PipelineData, ShellError, Span, Value,
 };
 use std::{fmt::Debug, sync::Arc};
 use thiserror::Error;
@@ -16,10 +18,7 @@ pub fn initial_engine_state() -> EngineState {
     let mut engine_state = engine_state;
     engine_state.add_env_var("PWD".to_string(), Value::string("/", Span::unknown()));
 
-    engine_state.config = Arc::new(Config {
-        use_ansi_coloring: true.into(),
-        ..Default::default()
-    });
+    engine_state.config = Arc::new(Config { use_ansi_coloring: true.into(), ..Default::default() });
 
     engine_state
 }
