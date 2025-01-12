@@ -24,7 +24,8 @@ pub fn Output(output: ReadSignal<RenderedData>) -> impl IntoView {
     let table_light = Signal::derive(move || output.read().table.light.to_string());
     let table_dark = Signal::derive(move || output.read().table.dark.to_string());
     let json = Signal::derive(move || output.read().json.to_string());
-    let html = Signal::derive(move || output.read().html.to_string());
+    let html_light = Signal::derive(move || output.read().html.light.to_string());
+    let html_dark = Signal::derive(move || output.read().html.dark.to_string());
 
     let (kind, set_kind) = signal(OutputKind::Raw);
 
@@ -33,12 +34,15 @@ pub fn Output(output: ReadSignal<RenderedData>) -> impl IntoView {
     let show_table_dark = Signal::derive(move || show_table.get() && is_preferred_dark.get());
     let show_json = Signal::derive(move || kind.get() == OutputKind::Json);
     let show_html = Signal::derive(move || kind.get() == OutputKind::Html);
+    let show_html_light = Signal::derive(move || show_html.get() && !is_preferred_dark.get());
+    let show_html_dark = Signal::derive(move || show_html.get() && is_preferred_dark.get());
 
     let display = |signal: Signal<bool>| move || if signal.get() { "" } else { "none" };
     let table_light_style = display(show_table_light);
     let table_dark_style = display(show_table_dark);
     let json_style = display(show_json);
-    let html_style = display(show_html);
+    let html_light_style = display(show_html_light);
+    let html_dark_style = display(show_html_dark);
 
     view! {
         <div class="tabs is-boxed">
@@ -64,7 +68,8 @@ pub fn Output(output: ReadSignal<RenderedData>) -> impl IntoView {
             <Raw style:display=table_light_style output=table_light />
             <Raw style:display=table_dark_style output=table_dark />
             <Json style:display=json_style output=json />
-            <Html style:display=html_style output=html />
+            <Html style:display=html_light_style output=html_light />
+            <Html style:display=html_dark_style output=html_dark />
         </div>
     }
 }
