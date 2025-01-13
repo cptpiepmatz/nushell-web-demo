@@ -7,3 +7,7 @@ $nushell-green: #4E9A06;
 .hide-html-output-background > div {
   background-color: inherit !important;
 }
+
+.output pre {
+  line-height: 1.17;
+}

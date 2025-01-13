@@ -64,7 +64,7 @@ pub fn Output(output: ReadSignal<RenderedData>) -> impl IntoView {
                 </li>
             </ul>
         </div>
-        <div>
+        <div class="output">
             <Raw style:display=table_light_style output=table_light />
             <Raw style:display=table_dark_style output=table_dark />
             <Json style:display=json_style output=json />
