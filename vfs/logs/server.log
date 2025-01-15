@@ -1,0 +1,4 @@
+[2025-01-14 10:15:30] INFO: Server started
+[2025-01-14 10:16:01] ERROR: Connection timeout from 192.168.1.1
+[2025-01-14 10:17:45] WARN: Disk usage exceeded 90%
+[2025-01-14 10:18:12] INFO: User login successful for user_id=42

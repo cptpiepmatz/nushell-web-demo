@@ -1,0 +1,4 @@
+- Test Nushell pipelines
+- Prepare demo scripts
+- Add more example files
+- Review documentation

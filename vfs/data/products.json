@@ -1,0 +1,20 @@
+[
+  {
+    "id": 101,
+    "name": "Laptop",
+    "price": 1200.50,
+    "tags": ["electronics", "portable"]
+  },
+  {
+    "id": 102,
+    "name": "Smartphone",
+    "price": 799.99,
+    "tags": ["electronics", "handheld"]
+  },
+  {
+    "id": 103,
+    "name": "Desk Chair",
+    "price": 150.00,
+    "tags": ["furniture", "office"]
+  }
+]
