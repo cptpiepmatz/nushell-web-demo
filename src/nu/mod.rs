@@ -6,6 +6,7 @@ use nu_protocol::{
 use std::{fmt::Debug, sync::Arc};
 use thiserror::Error;
 
+mod commands;
 pub mod render;
 
 #[allow(clippy::let_and_return)] // i like it here
