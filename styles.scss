@@ -11,3 +11,31 @@ $nushell-green: #4E9A06;
 .output pre {
   line-height: 1.17;
 }
+
+.text-filter-override {
+  @media (prefers-color-scheme: dark) {
+    // converted from the dark mode text color
+    filter: 
+      brightness(0) 
+      saturate(100%) 
+      invert(92%) 
+      sepia(4%) 
+      saturate(651%) 
+      hue-rotate(198deg) 
+      brightness(106%) 
+      contrast(87%);
+  }
+
+  @media (prefers-color-scheme: light) {
+    // converted from the light mode text color
+    filter: 
+      brightness(0) 
+      saturate(100%) 
+      invert(17%) 
+      sepia(12%) 
+      saturate(881%) 
+      hue-rotate(181deg) 
+      brightness(90%) 
+      contrast(88%);
+  }
+}

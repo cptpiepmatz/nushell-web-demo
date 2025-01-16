@@ -16,6 +16,7 @@
     "fmt-check:cargo": "cargo fmt --check"
   },
   "dependencies": {
+    "@primer/octicons": "^19.14.0",
     "ace-builds": "^1.36.5",
     "ansi_up": "^6.0.2",
     "ayu-ace": "^2.0.4",

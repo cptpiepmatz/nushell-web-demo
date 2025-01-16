@@ -2,6 +2,7 @@
 name = "nushell-web-demo"
 version = "0.1.0"
 edition = "2021"
+repository = "https://github.com/cptpiepmatz/nushell-web-demo"
 
 [dependencies]
 # dependencies for web development
