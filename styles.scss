@@ -12,6 +12,16 @@ $nushell-green: #4E9A06;
   line-height: 1.17;
 }
 
+.navbar, .navbar-end {
+  display: flex;
+  align-items: stretch;
+}
+
+.navbar-end {
+  justify-content: flex-end;
+  margin-inline-start: auto;
+}
+
 .text-filter-override {
   @media (prefers-color-scheme: dark) {
     // converted from the dark mode text color
