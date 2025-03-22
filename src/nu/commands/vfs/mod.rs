@@ -1,6 +1,9 @@
 use std::{ops::Deref, sync::OnceLock};
 use vfs::{FileSystem, MemoryFS};
 
+// mod cd;
+// mod ls;
+
 pub struct VirtualFileSystem(OnceLock<MemoryFS>);
 static VFS: VirtualFileSystem = VirtualFileSystem(OnceLock::new());
 
